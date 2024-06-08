@@ -1,0 +1,119 @@
+﻿@model IEnumerable<Ogrenci>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewData["Title"]</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f4f9;
+        }
+
+        h1, h2 {
+            color: #5a189a;
+        }
+
+        .btn-outline-primary {
+            border-color: #5a189a;
+            color: #5a189a;
+        }
+
+            .btn-outline-primary:hover {
+                background-color: #5a189a;
+                color: white;
+            }
+
+        .btn-outline-success {
+            border-color: #40916c;
+            color: #40916c;
+        }
+
+            .btn-outline-success:hover {
+                background-color: #40916c;
+                color: white;
+            }
+
+        .btn-outline-danger {
+            border-color: #d90429;
+            color: #d90429;
+        }
+
+            .btn-outline-danger:hover {
+                background-color: #d90429;
+                color: white;
+            }
+
+        .btn-outline-info {
+            border-color: #0077b6;
+            color: #0077b6;
+        }
+
+            .btn-outline-info:hover {
+                background-color: #0077b6;
+                color: white;
+            }
+
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: #e9ecef;
+        }
+
+        .table thead th {
+            background-color: #5a189a;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Öğrenci İşlemleri</h1>
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="mb-0">Öğrenci Listesi</h2>
+            <a class="btn btn-outline-primary" asp-action="AddStudent" asp-controller="Student">Öğrenci Ekle</a>
+        </div>
+
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Numara</th>
+                    <th scope="col">Ad</th>
+                    <th scope="col">Soyad</th>
+                    <th scope="col">İşlemler</th>
+                    <th scope="col">Aldığı Dersler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var ogr in Model)
+                {
+                    <tr>
+                        <td>@ogr.Numara</td>
+                        <td>@ogr.Ad</td>
+                        <td>@ogr.Soyad</td>
+                        <td>
+                            <a class="btn btn-sm btn-outline-success" href="/Student/EditStudent/@ogr.Ogrenciid">Düzenle</a>
+                            <a onclick="return confirm('Emin misiniz?')" class="btn btn-sm btn-outline-danger" href="/Student/DeleteStudent/@ogr.Ogrenciid">Sil</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-sm btn-outline-info" href="/Student/OgrenciDersleri/@ogr.Ogrenciid">Aldığı Dersler</a>
+                            <a class="btn btn-sm btn-outline-primary" href="/Student/AddDersForOgrenci?studentId=@ogr.Ogrenciid">Ders Ekle</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

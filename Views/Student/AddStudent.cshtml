@@ -1,0 +1,62 @@
+﻿@model Ogrenci
+
+@{
+    ViewData["Title"] = "AddStudent";
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewData["Title"]</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .bg-mor {
+            background-color: #6f42c1; /* Mor rengi */
+        }
+
+        .btn-yesil {
+            background-color: #28a745; /* Yeşil rengi */
+            border-color: #28a745;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container my-5">
+        <div class="card shadow-lg">
+            <div class="card-header bg-mor text-white">
+                <h2 class="mb-0">Öğrenci Ekleme İşlemi</h2>
+            </div>
+            <div class="card-body">
+                <form asp-action="AddStudent" asp-controller="Student" method="post">
+                    <div class="form-group">
+                        <label for="Ad">Ad</label>
+                        <input asp-for="Ad" class="form-control" id="Ad" placeholder="Öğrenci Adı" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Soyad">Soyad</label>
+                        <input asp-for="Soyad" class="form-control" id="Soyad" placeholder="Öğrenci Soyadı" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Numara">Numara</label>
+                        <input asp-for="Numara" class="form-control" id="Numara" placeholder="Öğrenci Numarası" />
+                    </div>
+
+                    <div class="form-group text-center mt-4">
+                        <button type="submit" class="btn btn-yesil btn-lg text-white">Kaydet</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
